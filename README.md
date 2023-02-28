@@ -53,3 +53,30 @@ Reading File Asynchronously.....
 Here is your file : - The avocado 🥑 is also used as the base for the Mexican dip known as guacamole, as well as a spread on corn tortillas or toast, served with spices.
 error: null
 ```
+
+### 3. Creating a Web Server
+
+1. Create a Server
+2. Listening incoming request from the client
+
+```
+const server = http.createServer((req,res)=>{
+    res.end("Hello from the Server !!");
+})
+
+server.listen(8000,'127.0.0.1',()=>{
+    console.log("Listening to request on port 8000");
+})
+```
+
+We create a Server and then listen to it. createServer will accept a callback function which will be fired off each time a new requests hits our server.
+
+```
+Output in Terminal - 
+Listening to request on port 8000
+```
+
+```
+Output at PORT : 127.0.0.1:8000
+Hello from the Server !!
+```

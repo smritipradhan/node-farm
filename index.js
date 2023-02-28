@@ -1,4 +1,5 @@
 const fs = require('fs') ; //we import the fs module and use it 
+const http = require('http');
 
 // console.log("Hello this is my first Node Js Project");
 
@@ -22,3 +23,12 @@ const fs = require('fs') ; //we import the fs module and use it
 // console.log("Reading File Asynchronously.....");
 
 /* -----------------------------------------------------------*/
+
+// Creating a Web Server
+const server = http.createServer((req,res)=>{
+    res.end("Hello from the Server !!");
+})
+
+server.listen(8000,'127.0.0.1',()=>{
+    console.log("Listening to request on port 8000");
+})
