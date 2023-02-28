@@ -11,7 +11,7 @@ There are two ways of Reading and Writing files.
 ### 1. Synchronous File Read and Write
 
 ```
-const fs = require('fs') ; //
+const fs = require('fs') ; 
 const file = fs.readFileSync('./txt/final.txt','utf-8');
 console.log("File:-",file);
 ```
@@ -24,7 +24,7 @@ File:- The avocado 🥑 is also used as the base for the Mexican dip known as gu
 ```
 
 ```
-const fs = require('fs') ; //
+const fs = require('fs') ; 
 const file = fs.readFileSync('./txt/final.txt','utf-8');
 console.log("File:-",file);
 
@@ -37,3 +37,19 @@ If there are no matching file in which we want to write then it creates a file w
 
 ### 2. Asynchronous File Read
 
+```
+fs.readFile('./txt/read-this.txt','utf-8',(error,data)=>{
+    console.log(`Here is your file : - ${data}`,);
+    console.log("error:",error);
+})
+
+console.log("Reading File Asynchronously.....");
+```
+The asynchronous file Read function takes three arguements. The file path,encoding and a callback which gets executed after File Reads gets completed and this block of code does not block the execution of the Next line. The next line gets executed followed by the execution of this function when file Read is completed.
+
+```
+Output-
+Reading File Asynchronously.....
+Here is your file : - The avocado 🥑 is also used as the base for the Mexican dip known as guacamole, as well as a spread on corn tortillas or toast, served with spices.
+error: null
+```
