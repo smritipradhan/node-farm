@@ -26,7 +26,27 @@ const http = require('http');
 
 // Creating a Web Server
 const server = http.createServer((req,res)=>{
-    res.end("Hello from the Server !!");
+    
+    const pathname = req.url;
+
+    if(pathname === "/" || pathname === "/overview")
+    {
+        res.end("This is Over View Page");
+    }
+
+    else if(pathname === "/product")
+    {
+        res.end("This is our Product Page")
+    }
+    else
+    {
+        res.writeHead(404,{
+            'Content-type':"text/html",
+            'my-own-header':"My own Header",
+        })
+        res.end(`<h1>Page not Found !! </h1>`)
+    }
+
 })
 
 server.listen(8000,'127.0.0.1',()=>{

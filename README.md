@@ -60,6 +60,7 @@ error: null
 2. Listening incoming request from the client
 
 ```
+const http = require('http');
 const server = http.createServer((req,res)=>{
     res.end("Hello from the Server !!");
 })
@@ -80,3 +81,65 @@ Listening to request on port 8000
 Output at PORT : 127.0.0.1:8000
 Hello from the Server !!
 ```
+
+### 4. Routing
+```
+const server = http.createServer((req,res)=>{
+    res.end("Hello from the Server !!");
+    console.log(req.url);
+})
+
+server.listen(8000,'127.0.0.1',()=>{
+    console.log("Listening to request on port 8000");
+})
+```
+
+Output
+
+```
+/
+/favicon.ico
+```
+Here we will create a server with different route paths for overview , products and and Error page. For Error Page we have a fallback in which we return a HTML Code. For /product we return This is our Product Page and for /overview or / we return This is Over View Page .
+
+```
+const server = http.createServer((req,res)=>{
+    
+    const pathname = req.url;
+
+    if(pathname === "/" || pathname === "/overview")
+    {
+        res.end("This is Over View Page");
+    }
+
+    else if(pathname === "/product")
+    {
+        res.end("This is our Product Page")
+    }
+    else
+    {
+        res.writeHead(404,{
+            'Content-type':"text/html",
+            'my-own-header':"My own Header",
+        })
+        res.end(`<h1>Page not Found !! </h1>`)
+    }
+
+})
+
+server.listen(8000,'127.0.0.1',()=>{
+    console.log("Listening to request on port 8000");
+})
+
+```
+Output in 127.0.0.1:8000/overview and  127.0.0.1:8000
+This is Over View Page
+
+Output in 127.0.0.1:8000/product 
+This is our Product Page
+
+Output in 127.0.0.1:8000/fkejfhw
+Page not Found !!
+```
+
+For the fallback we send the status code as 404 , with a html code of Page not found and custom Headers.
