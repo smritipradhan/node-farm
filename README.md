@@ -2,6 +2,10 @@
 
 Simple Project using Node in which we create a WebServer , include routings and build a simple API and work with HTML Templating.
 
+<img width="1440" alt="Screenshot 2023-03-01 at 12 56 37 AM" src="https://user-images.githubusercontent.com/47382260/221958219-45c8f98c-9da3-487d-bf00-485e463ae4e0.png">
+
+<img width="1440" alt="Screenshot 2023-03-01 at 12 54 47 AM" src="https://user-images.githubusercontent.com/47382260/221957984-2889ce05-9b2a-4cf0-8423-bedf53c727dd.png">
+
 ### 1. Reading and Writing Files.
 There are two ways of Reading and Writing files. 
 1. Asynchronous File Read
