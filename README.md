@@ -209,3 +209,40 @@ server.listen(8000, "127.0.0.1", () => {
 });
 ```
 
+```
+OUTPUT:
+
+[
+  {
+    "id": 0,
+    "productName": "Fresh Avocados",
+    "image": "🥑",
+    "from": "Spain",
+    "nutrients": "Vitamin B, Vitamin K",
+    "quantity": "4 🥑",
+    "price": "6.50",
+    "organic": true,
+    "description": "A ripe avocado yields to gentle pressure when held in the palm of the hand and squeezed. The fruit is not sweet, but distinctly and subtly flavored, with smooth texture. The avocado is popular in vegetarian cuisine as a substitute for meats in sandwiches and salads because of its high fat content. Generally, avocado is served raw, though some cultivars, including the common 'Hass', can be cooked for a short time without becoming bitter. It is used as the base for the Mexican dip known as guacamole, as well as a spread on corn tortillas or toast, served with spices."
+  },
+  {
+    ...
+    ...
+    ...
+    ... 
+```
+
+### HTML TEMPLATING
+
+First we need to build these templates. 
+1. The Product Overview Page
+2. The Product Details Page.
+SO, we are going to create template based on the static webpages in templates folder.
+
+We are going to add placeholder in the static webpages and then later replace those placeholder with the actual data from data.json file.
+
+for eg .   <h2 class="product__name">{%PRODUCTNAME%}</h2>
+
+SO we added the placeholders to the static webpages and now its time to replace/ fill those placeholder with the actual content.
+
+### HTML TEMPLATING : FILLING THE TEMPLATES
+
