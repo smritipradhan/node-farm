@@ -145,3 +145,67 @@ Page not Found !!
 ```
 
 For the fallback we send the status code as 404 , with a html code of Page not found and custom Headers.
+
+
+### 5. Building a very Simple API
+API is a service from which we can request some data. We have data.json . Here, this is data what our API will sent to client when requested.We have a local data.json in dev-data which we need to read , parse and send back to the client.
+dirname = variable always translates to the directory in which the script that we are currently executed is located.So in this case its actually the same place because index.js is also in this node farm folder.
+
+```
+const server = http.createServer((req, res) => {
+  const pathname = req.url;
+
+  if (pathname === "/" || pathname === "/overview") {
+    res.end("This is Over View Page");
+  } else if (pathname === "/product") {
+    res.end("This is our Product Page");
+  } else if (pathname === "/api") {
+    fs.readFile(`${__dirname}/dev-data/data.json`, "utf-8", (error, data) => {
+      res.writeHead(200, { "Content-type": "application/json" });
+      res.end(data);
+    });
+  } else {
+    res.writeHead(404, {
+      "Content-type": "text/html",
+      "my-own-header": "My own Header",
+    });
+    res.end(`<h1>Page not Found !! </h1>`);
+  }
+});
+
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening to request on port 8000");
+});
+
+```
+Here the problem with the code is the file is read each time there is a request to /api so the solution to this problem can be reading the file outside synchronously . This wont be a problem because the code will run only once when the server starts.So, instead of reading the file every time a request is made, we can read the file Synchronously.The secret here is simply to know which code is only executed once and only at the beginning,and which code gets executed over and over again.
+
+
+```
+//Effient way.
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
+
+const server = http.createServer((req, res) => {
+  const pathname = req.url;
+
+  if (pathname === "/" || pathname === "/overview") {
+    res.end("This is Over View Page");
+  } else if (pathname === "/product") {
+    res.end("This is our Product Page");
+  } else if (pathname === "/api") {
+    res.writeHead(200, { "Content-type": "application/json" });
+    res.end(data);
+  } else {
+    res.writeHead(404, {
+      "Content-type": "text/html",
+      "my-own-header": "My own Header",
+    });
+    res.end(`<h1>Page not Found !! </h1>`);
+  }
+});
+
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening to request on port 8000");
+});
+```
+
