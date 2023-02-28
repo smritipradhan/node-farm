@@ -210,7 +210,7 @@ server.listen(8000, "127.0.0.1", () => {
 ```
 
 ```
-OUTPUT:
+OUTPUT IN PORT :
 
 [
   {
@@ -304,3 +304,32 @@ const replaceTemplate = (template,product) => {
 }
 ```
 We got the cards with data and we join and replace the overview page with all the cards.
+
+### PARSING VARIABLES FROM URLS
+
+```
+const url = require("url");
+
+...
+...
+const { query, pathname } = url.parse(req.url, true);
+...
+...
+//Product Page
+  else if (pathname === "/product") {
+    const productData = dataObj[query.id];
+    const productDetails = replaceTemplate(templateProduct, productData)
+
+    res.end(productDetails);
+  }
+...
+
+```
+When we click on any product we get navigated to href="/product?id={%ID%}" where id is our data.json each data id. We use url which gives us query and pathname .
+query --  { id: '0' } 
+pathname --- /product 
+Now we get the product Data from the array of objects using the query id and use replaceTemplate function to fill the placeholders based on the data object.
+
+-----------------------------------------------------------------------------------
+For any doubts - Contact - smritipradhan545@gmail.com 
+Credits - Jonas Udemy.
